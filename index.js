@@ -7,8 +7,11 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
 function createMenuItem(name, cost, category){
-    /* Code here */
+    return {name, cost, category}
 }
+console.log(createMenuItem('tacos', 8, 'Lunch'));
+console.log(createMenuItem('poke bowl', 15, 'Lunch'));
+console.log(createMenuItem('milkshake', 8, 'Drinks'));
 
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
 
@@ -24,6 +27,13 @@ and should return a number.
 
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
+burger.discount = function(string){
+  if (string === 'teacher' | 'student'){
+    return burger.price * .75} else {
+      return burger.price * .90
+    }
+}
+console.log(burger.discount('teacher'))
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -39,13 +49,20 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
 ]
 
 /* Task 4: Console.log just Julius' feedback */
-
+console.log(reviews[5].feedback)
 
 /* Task 5: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
-
-
-/* Task 6: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
-
+function addRating(array, name, rating, feedback){
+  array.push({name, rating, feedback});
+  return array;
+}
+console.log(addRating(reviews, 'dalton', '12', 'left me not wanting to leave'));
+/* Task 6: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"*/
+function changeRating(array, index, feedback){
+  array[index].feedback = feedback;
+  return feedback;
+}
+ console.log(changeRating(reviews, 7, "this place is chill with really cool people, great for getting work done on weekdays"));
 /*  Task 7: Write a function to return a review based on the index of the review in the array.
 
  Your function should take two arguments:
@@ -60,8 +77,12 @@ and should return a string in the format `{name} gave the restaurant a {rating},
 */
 function getReviewByIndex(reviews, index) {
     /* code here */
-  }
+    return `${reviews[index].name} gave the restaurant a ${reviews[index].rating}, and their feedback was: ${reviews[index].feedback}`
+    
+}
+    
   
+  console.log(reviews[2])
 
 /* Task 8: Write a function to get information about the most recent review called `getLastReview`
 
@@ -72,10 +93,15 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
-function getLastReview(/* code here */) {
+function getLastReview(array) {
     /* code here */
-  } 
+     
+      return `${array[array.length-1].name} gave the restaurant a ${array[array.length-1].rating}, and their feedback was: ${array[array.length-1].feedback}` 
+  
+ 
+}
 
+console.log(getLastReview(reviews))
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
@@ -91,10 +117,17 @@ function getLastReview(/* code here */) {
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(/* code here */) {
+ function getReviewByRating(array, rating) {
+   // using a for-loop, iterate through every item 
+   // find all reviews with  rating <= 4 && rating 
+let filteredRating = reviews.filter(person => Math.floor(person.rating) === rating)
+return filteredRating;
+   
+    
+} 
+   console.log(getReviewByRating(reviews, 4))
     /* code here */
-  }
-
+  
   
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words. 
   
